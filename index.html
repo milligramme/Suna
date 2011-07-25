@@ -2,36 +2,44 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>canvas test</title>
+  <title>Suna</title>
   <style type="text/css" media="screen">
     body{
       background-color: #111;
     }
   </style>
-  <script type="application/x-javascript">
-  onload = function() {
-    draw();
-  };
+  <script type="text/javascript">
 
-  function draw() {
-    var ctx = document.getElementById('canvas').getContext('2d');
-    for (i=0;i<50;i++){
-      for (j=0;j<50;j++){
-        ctx.strokeStyle = 'rgb(' + /*rand(256)*/'0' + ',' + /*rand(256)*/'0' + ',' + rand(256)+')';
+  var canvasfunc = function(){
+    for (var i=0; i < 62; i++){
+      for (var j=0; j < 123; j++){
+        var ctx = document.getElementById('canvas').getContext('2d');
+        var gs = rand(256);
+        ctx.strokeStyle = 'rgb(' + /*rand(256)*/gs + ',' + /*rand(256)*/gs + ',' + /*rand(256)*/gs+')';
         ctx.strokeRect(j*rand(12),i*rand(12),rand(12),rand(12));
-        ctx.fillStyle = 'rgb(' + rand(256) + ',' + /*rand(256)*/'0' + ',' + rand(256)+')';
-        ctx.fillRect(j*rand(12),i*rand(12),rand(22),rand(22));
-        // ctx.arc(j*3,i*3,3, 0, Math.PI*2, false);
-        // ctx.stroke();
+        var gf = rand(256);
+        ctx.fillStyle = 'rgb(' + /*rand(256)*/gf + ',' + /*rand(256)*/gf + ',' + /*rand(256)*/gf+')';
+        ctx.fillRect(j*rand(12),i*rand(12),rand(12),rand(12));
       }
+      console.log(new Date().getSeconds())
+      if (new Date().getSeconds() % 30 === 0) {
+        ctx.clearRect(0,0,2000,1000);
+      };
+
+      // ctx.save();
+      // ctx.restore();
     };
   }
   function rand (n) {
     return Math.floor(Math.random() * n)
   }
+  
+  window.onload = function() {
+    var int = setInterval(canvasfunc, 100);
+  };
   </script>
 </head>
 <body>
-  <canvas id="canvas" width="2000" height="2000"></canvas>
+  <canvas id="canvas" width="2000" height="1000"></canvas>
 </body>
 </html>
